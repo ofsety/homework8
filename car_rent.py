@@ -1,6 +1,5 @@
 import pandas as pd
-from datetime import time
-from datetime import date
+import datetime
 
 df_cars = pd.read_csv("cars.csv", dtype={"id": str})
 df_playlists = pd.read_csv("playlist.csv", dtype={"id": str})
@@ -29,18 +28,18 @@ class PlaylistService ():
         self.link = df_playlists.loc[df_playlists["name"] == self.name, "Link"].squeeze()
         
 
-class Reservation_Ticket(PlaylistService):
-    def __init__(self, name,model ):
+class Reservation_Ticket():
+    def __init__(self, name,model, link ):
         self.name = name
         self.model = model
+        self.link = link
 
     
     def generate(self):
         print (f"""
                 Your car model is: {self.model}
                 Your customer name is: {self.name}
-                The date of the booking is: {date}
-                Time of the booking is: {time}
+                The date of the booking is: {datetime.now()}
                 Your playlist link is: {self.link}
  """)
         
@@ -61,9 +60,10 @@ def main():
                 print (df_playlists)
                 playlist_name = input ("Please input the playlist name:")
                 playlist = PlaylistService (playlist_name)
+                playlist_link=playlist.output_playlist()
             else:
                 pass
-            rent_confirmation = Reservation_Ticket(customer_name, car_model)
+            rent_confirmation = Reservation_Ticket(customer_name, car_model, playlist_link)
             rent_confirmation.generate
             
 
