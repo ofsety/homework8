@@ -4,12 +4,12 @@ import datetime
 df_cars = pd.read_csv("cars.csv", dtype={"id": str})
 df_playlists = pd.read_csv("playlist.csv", dtype={"id": str})
 
-class Car():
-    def __init__ (self, id):
+class Car:
+    def __init__(self, id):
         self.id = id
     
 
-    def avaible (self):
+    def avaible(self):
         available = df_cars.loc[df_cars["id"] == self.id, "available"].squeeze()
         if available == "yes":
             return True 
@@ -20,15 +20,15 @@ class Car():
         df_cars.loc[df_cars["id"] == self.id, "available"] = "No"
         df_cars.to_csv("cars.csv", index=False)
         
-class PlaylistService ():
+class PlaylistService:
     def __init__(self, playlist_name, ):
         self.name = playlist_name
     
-    def output_playlist (self):
+    def output_playlist(self):
         self.link = df_playlists.loc[df_playlists["name"] == self.name, "Link"].squeeze()
-        
+        return self.link
 
-class Reservation_Ticket():
+class Reservation_Ticket:
     def __init__(self, name,model, link ):
         self.name = name
         self.model = model
