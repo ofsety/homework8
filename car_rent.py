@@ -73,4 +73,4 @@ def main():
     else:
         print("Thank you fo visiting our web")
 
-        
+main ()     
