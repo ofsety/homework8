@@ -1,4 +1,4 @@
-id, brand, model, color, avaible 
+id, brand, model, color, available 
 1234, Audi, A3, red, No
 5678, Wolkswagen, Polo, blue, Yes
 1324, Toyota, Corola, Black, Yes

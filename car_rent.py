@@ -2,14 +2,14 @@ import pandas as pd
 import datetime
 
 df_cars = pd.read_csv("cars.csv", dtype={"id": str})
-df_playlists = pd.read_csv("playlist.csv", dtype={"id": str})
+df_playlists = pd.read_csv("playlists.csv", dtype={"id": str})
 
 class Car:
     def __init__(self, id):
         self.id = id
     
 
-    def avaible(self):
+    def available(self):
         available = df_cars.loc[df_cars["id"] == self.id, "available"].squeeze()
         if available == "yes":
             return True 
@@ -47,11 +47,11 @@ class Reservation_Ticket:
 
 def main():
     print(df_cars)
-    init_of_rent= input("If yo want to choose a car to rent pres enter")
-    if init_of_rent:
+    init_of_rent= input("If you want to choose a car to rent press enter:")
+    if not init_of_rent:
         car_id= input("Please input the cars id:")
         car= Car (id = car_id)
-        if car.avaible():
+        if car.available():
             car.booking()
             customer_name = input ("Please input your name:")
             car_model = df_cars.loc[df_cars["id"] == car_id, "model"].squeeze()
@@ -68,9 +68,9 @@ def main():
             
 
         else:
-            print("Thiss car is not avaible or not existing")
+            print("This car is not available or not existing")
     
     else:
-        print("Thank you fo visiting our web")
+        print("Thank you for visiting our web")
 
-main ()     
+main()     
